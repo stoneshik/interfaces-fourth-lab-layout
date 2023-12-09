@@ -350,3 +350,8 @@ form .menu li {
 #hamburger ul li:hover a {
     color: #FFFFFF;
 }
+#content {
+    min-width: 900px;
+    display: flex;
+    justify-content: center;
+}
