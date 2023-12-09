@@ -329,6 +329,8 @@ form .menu li {
     position: absolute;
 }
 #hamburger ul {
+    margin: 0;
+    padding: 0;
     position: relative;
     text-align: left;
     right: 75px;
@@ -336,5 +338,15 @@ form .menu li {
 }
 #hamburger ul li {
     display: block;
+    margin: 0;
     padding: 10px;
+}
+#hamburger ul a {
+    color: #000000;
+}
+#hamburger ul li:hover {
+    background-color: #444444;
+}
+#hamburger ul li:hover a {
+    color: #FFFFFF;
 }
