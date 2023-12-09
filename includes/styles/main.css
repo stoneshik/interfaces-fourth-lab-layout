@@ -298,7 +298,7 @@ fieldset input:checked {
 form .menu li {
     margin-right: 16px;
 }
-.menu.menu-column {
+.menu.menu-column{
     margin: 0;
     padding: 0;
 }
@@ -320,4 +320,21 @@ form .menu li {
 #footer h3 {
     text-align: left;
 }
-
+#hamburger .hamburger-wrapper {
+    display: none;
+}
+#hamburger:hover .hamburger-wrapper,
+#hamburger .hamburger-wrapper:hover {
+    display: inline-block;
+    position: absolute;
+}
+#hamburger ul {
+    position: relative;
+    text-align: left;
+    right: 75px;
+    background-color: #CCCCCC;
+}
+#hamburger ul li {
+    display: block;
+    padding: 10px;
+}
