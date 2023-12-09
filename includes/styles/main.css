@@ -31,6 +31,7 @@ a.none-underline {
 }
 a:hover {
     text-decoration: none;
+    color: #F77A52;
 }
 label {
     display: inline-block;
@@ -75,12 +76,12 @@ label {
     border: 3px solid #DDD;
 }
 .main-form {
-    padding: 45px 30px 40px 30px;
-    margin: 30px auto 20px;
+    padding: 45px 30px 30px 30px;
+    margin: 30px auto 15px;
 }
 .second-form {
     padding: 30px;
-    margin: 20px auto;
+    margin: 0 auto 30px;
 }
 .ui-form h3 {
     position: relative;
@@ -93,7 +94,12 @@ label {
 }
 .form-row {
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+}
+#forgot-password {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
 .form-row input {
     display: block;
@@ -144,6 +150,9 @@ label {
     border-width: 0;
     color: #FFF;
     font-size: 18px;
+}
+.ui-form input[type="submit"]:hover {
+    background: #F77A52;
 }
 .ui-form p {
     margin: 0;
@@ -274,6 +283,13 @@ fieldset input:checked {
     margin: 0 20px 0 0;
     font-size: 20px;
     font-family: sans-serif;
+}
+.menu li a:hover {
+    color: #F77A52;
+}
+
+form .menu li {
+    margin-right: 16px;
 }
 .menu.menu-column {
     margin: 0;
