@@ -22,6 +22,14 @@
     <div>
         <form action="main.html" class="ui-form main-form" id="dot-form">
             <div class="form-row">
+                <p>Регистрация через соцсети</p><br>
+                <ul class="menu">
+                    <li><a><img src="includes/svg/VK_Compact_Logo_(2021-present).svg.webp" alt="vk"></a></li>
+                    <li><a><img src="includes/svg/32_@mail_sign_only_square_b.svg" alt="email"></a></li>
+                    <li><a><img src="includes/svg/Yandex_icon.svg.png" alt="yandex"></a></li>
+                </ul>
+            </div>
+            <div class="form-row">
                 <input type="email" id="email-field" required autocomplete="off">
                 <label for="email-field" class="text-input-label">Почта:</label>
             </div>
@@ -29,7 +37,21 @@
                 <input type="password" id="password-field" required autocomplete="off">
                 <label for="password-field" class="text-input-label">Пароль:</label>
             </div>
-            <input type="submit" value="Зарегистрироваться">
+            <div class="form-row">
+                <input type="text" id="name-field" required autocomplete="off">
+                <label for="name-field" class="text-input-label">Имя:</label>
+            </div>
+            <div class="form-row">
+                <input type="text" id="surname-field" required autocomplete="off">
+                <label for="surname-field" class="text-input-label">Фамилия:</label>
+            </div>
+            <div class="form-row">
+                <input type="submit" value="Зарегистрироваться">
+            </div>
+            <div class="form-row">
+                <input type="checkbox" id="agreement" autocomplete="off">
+                <span>Я согласен(на) с <br><a>условиями пользования</a></span>
+            </div>
         </form>
         <form action="login.html" class="ui-form second-form">
             <input type="submit" value="Войти">
