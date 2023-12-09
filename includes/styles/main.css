@@ -15,7 +15,7 @@ body {
 p {
     margin: 16px 10px 20px;
 }
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
     color: #4A90E2;
     font-weight: bold;
 }
@@ -57,7 +57,7 @@ label {
     justify-content: center;
     align-content: space-around;
 }
-#header {
+#header, #footer {
     background-color: #EEE;
     justify-content: space-evenly;
     text-align: center;
@@ -264,6 +264,10 @@ fieldset input:checked {
 .response.neutral td {
     color: #000;
 }
+.menu {
+    margin: 0;
+    padding: 0;
+}
 .menu li {
     list-style: none;
     display: inline-block;
@@ -271,7 +275,26 @@ fieldset input:checked {
     font-size: 20px;
     font-family: sans-serif;
 }
+.menu.menu-column {
+    margin: 0;
+    padding: 0;
+}
+.menu.menu-column li {
+    display: list-item;
+    margin: 10px 0 0 0;
+    text-align: left;
+}
+.menu.menu-column a {
+    font-size: 16px;
+}
 .menu a {
     text-decoration: none;
     color: #00008B;
 }
+.menu img {
+    width: 54px;
+}
+#footer h3 {
+    text-align: left;
+}
+
