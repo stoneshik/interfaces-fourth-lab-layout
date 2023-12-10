@@ -346,10 +346,12 @@ form .menu li {
 #hamburger ul li:hover a {
     color: #FFFFFF;
 }
+#hamburger .description {
+    padding: 5px;
+}
 #hamburger:hover .description {
     background-color: #444444;
     color: #FFFFFF;
-    padding: 5px;
 }
 #content {
     width: 900px;
@@ -456,6 +458,10 @@ form .menu li {
     justify-content: center;
 }
 #map {
+    display: flex;
+    justify-content: center;
+}
+#new_order_wrapper {
     display: flex;
     justify-content: center;
 }
