@@ -330,6 +330,7 @@ form .menu li {
     text-align: left;
     right: 75px;
     background-color: #E9E9E9;
+    z-index: 5;
 }
 #hamburger ul li {
     display: block;

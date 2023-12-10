@@ -37,6 +37,7 @@
             <table>
                 <tbody>
                 <tr>
+                    <th></th>
                     <th>Номер заказа</th>
                     <th>Тип заказа</th>
                     <th>Дата заказа</th>
@@ -44,8 +45,10 @@
                     <th>Сумма заказа</th>
                     <th>Адрес</th>
                     <th></th>
+                    <th></th>
                 </tr>
                 <tr>
+                    <td><input type="checkbox" autocomplete="off"></td>
                     <td class="num"><a href="order_print.html" title="Подробнее о заказе">333444</a></td>
                     <td>печать</td>
                     <td>13.12.2023</td>
@@ -53,8 +56,10 @@
                     <td>28.00 руб.</td>
                     <td class="address">Невский пр-кт, д. 24</td>
                     <td><div class="button">Оплатить</div></td>
+                    <td><img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);"></td>
                 </tr>
                 <tr>
+                    <td><input type="checkbox" autocomplete="off"></td>
                     <td class="num"><a href="order_scan.html" title="Подробнее о заказе">111321</a></td>
                     <td>сканирование</td>
                     <td>14.12.2023</td>
@@ -62,6 +67,7 @@
                     <td>5.00 руб.</td>
                     <td class="address">Невский пр-кт, д. 24</td>
                     <td><div class="button">Оплатить</div></td>
+                    <td><img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);"></td>
                 </tr>
                 </tbody>
             </table>
@@ -100,5 +106,14 @@
         <h4>Email: info@typofast.ru</h4>
     </div>
 </div>
+<script>
+    function remove(e) {
+        const result = confirm("Вы уверены что хотите удалить заказ?");
+        if (!result) {
+            return;
+        }
+        e.parentElement.parentElement.remove();
+    }
+</script>
 </body>
 </html>
