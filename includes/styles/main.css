@@ -511,13 +511,11 @@ form .menu li {
     text-align: center;
     padding: 5px;
     border-radius: 5px;
-
     position: absolute;
     z-index: 1;
     bottom: 110%; /* Расположение подсказки относительно основного текста */
     left: 50%;
     margin-left: -60px; /* Центрирование подсказки */
-
     opacity: 0; /* Начальная прозрачность */
     transition: opacity 0.3s; /* Плавное появление */
 }
@@ -525,3 +523,4 @@ form .menu li {
     visibility: visible;
     opacity: 1;
 }
+
