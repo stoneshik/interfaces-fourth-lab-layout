@@ -380,6 +380,9 @@ form .menu li {
 #orders .address {
     text-align: left;
 }
+#orders .button {
+    min-width: 110px;
+}
 .new-order-wrapper {
     text-decoration: none;
 }
@@ -419,4 +422,31 @@ form .menu li {
 #files .file p {
     margin: 2px;
     text-align: center;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 42px;
+    min-width: 262px;
+    background-color: #4A90E2;
+    color: #FFF;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+}
+.button:hover {
+    background-color: #F77A52;
+}
+#total {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+#total .button {
+    margin-left: 20px;
 }
