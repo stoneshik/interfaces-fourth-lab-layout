@@ -404,7 +404,7 @@ form .menu li {
     width: 84px;
 }
 
-#files .file {
+.file {
     height: 160px;
     padding: 15px;
     background-color: #F5F5F5;
@@ -413,13 +413,13 @@ form .menu li {
     justify-content: center;
     align-items: center;
 }
-#files .file:hover {
+.file:hover {
     background-color: #EEEEEE;
 }
-#files .file img {
+.file img {
     width: 64px;
 }
-#files .file p {
+.file p {
     margin: 2px;
     text-align: center;
 }
@@ -449,4 +449,8 @@ form .menu li {
 }
 #total .button {
     margin-left: 20px;
+}
+.files {
+    display: flex;
+    justify-content: center;
 }
