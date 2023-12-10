@@ -18,6 +18,7 @@ p {
 h1, h2, h3, h4, h5, h6 {
     color: #4A90E2;
     font-weight: bold;
+    text-align: center;
 }
 a {
     color: #00008B;
@@ -59,7 +60,7 @@ label {
     align-content: space-around;
 }
 #header, #footer {
-    background-color: #EEE;
+    background-color: #F5F5F5;
     justify-content: space-evenly;
     text-align: center;
 }
@@ -223,18 +224,12 @@ fieldset input:checked {
 .results {
     padding: 5px;
     margin-bottom: 10px;
-    background-color: #EEE;
+    background-color: #F5F5F5;
     border: none;
 }
-.results tr {
-    border: none;
-}
-#results {
-    max-width: 450px;
-    min-width: 250px;
-}
-#area-check-results {
-    min-width: 600px;
+.results tr, .results td {
+    border: 1px solid #000000;
+    border-collapse: collapse;
 }
 .response {
     display: inline-block;
@@ -269,7 +264,7 @@ fieldset input:checked {
     border-top: 1px solid #EEE;
 }
 .response.neutral {
-    background-color: #CCC;
+    background-color: #F5F5F5;
 }
 .response.success {
     background-color: #339966;
@@ -334,7 +329,7 @@ form .menu li {
     position: relative;
     text-align: left;
     right: 75px;
-    background-color: #CCCCCC;
+    background-color: #E9E9E9;
 }
 #hamburger ul li {
     display: block;
@@ -350,8 +345,58 @@ form .menu li {
 #hamburger ul li:hover a {
     color: #FFFFFF;
 }
+#hamburger:hover .description {
+    background-color: #444444;
+    color: #FFFFFF;
+    padding: 5px;
+}
 #content {
-    min-width: 900px;
+    width: 900px;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    margin-bottom: 30px;
+}
+#orders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#orders table {
+    border-collapse: collapse;
+}
+#orders table td,
+#orders table th {
+    border: 1px solid #222222;
+    padding: 10px;
+    text-align: center;
+    vertical-align: center;
+    font-size: 16px;
+}
+#orders .num {
+    font-size: 20px;
+}
+#orders .address {
+    text-align: left;
+}
+.new-order-wrapper {
+    text-decoration: none;
+}
+.new-order {
+    width: 400px;
+    height: 200px;
+    padding: 40px 20px 10px;
+    background-color: #F5F5F5;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+.new-order:hover {
+    background-color: #EEEEEE;
+}
+.new-order img {
+    width: 84px;
 }
