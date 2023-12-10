@@ -136,7 +136,8 @@ label {
 .form-row input[type="email"]:valid+label,
 .form-row input[type="password"]:focus+label,
 .form-row input[type="password"]:valid+label {
-    margin-left: -20px;
+    margin-left: -15px;
+    margin-top: -12px;
     font-size: 14px;
     font-weight: 400;
     outline: 0;
@@ -467,4 +468,23 @@ form .menu li {
 }
 #new_order_form {
     margin: 0;
+}
+#new_order_form h3 {
+    margin-bottom: 30px;
+}
+#pay_button p {
+    color: #9D959D;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+#pay_button input[type="submit"] {
+    min-width: 0;
+    display: inline-block;
+}
+#pay_button_first {
+    width: 200px;
+}
+#pay_button_second {
+    width: 100px;
 }
