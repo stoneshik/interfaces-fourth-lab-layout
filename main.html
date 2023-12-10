@@ -8,13 +8,13 @@
 </head>
 <body>
 <div id="header" class="container">
-    <div class="container"><a href="index.html" class="none-underline"><h2>TypoFast</h2></a></div>
+    <div class="container"><a href="main.html" class="none-underline"><h2>TypoFast</h2></a></div>
     <div class="container">
         <ul class="menu row">
             <li><a>помощь</a></li>
-            <li><a>мы на карте</a></li>
-            <li><a>файлы</a></li>
-            <li><a>корзина</a></li>
+            <li><a href="map.html">мы на карте</a></li>
+            <li><a href="files.html">файлы</a></li>
+            <li><a href="cart.html">корзина</a></li>
             <li id="hamburger">
                 <div class="description">аккаунт</div>
                 <div class="hamburger-wrapper">
@@ -23,7 +23,7 @@
                         <li><a>1337,00р</a></li>
                         <li><a>пополнить счет</a></li>
                         <li><a>личный кабинет</a></li>
-                        <li><a>выйти</a></li>
+                        <li><a href="index.html">выйти</a></li>
                     </ul>
                 </div>
             </li>
@@ -36,9 +36,30 @@
             <h3>Оплаченные заказы</h3>
             <table>
                 <tbody>
-                <tr><th>Номер заказа</th><th>Тип заказа</th><th>Дата заказа</th><th>Сумма заказа</th><th>Адрес</th></tr>
-                <tr><td class="num"><a title="Подробнее о заказе">333444</a></td><td>печать</td><td>13.12.2023</td><td>28.00 руб.</td><td class="address">Невский пр-кт, д. 24</td></tr>
-                <tr><td class="num"><a title="Подробнее о заказе">333444</a></td><td>печать</td><td>13.12.2023</td><td>28.00 руб.</td><td class="address">Невский пр-кт, д. 24 Невский пр-кт, д. 24</td></tr>
+                <tr>
+                    <th>Номер заказа</th>
+                    <th>Тип заказа</th>
+                    <th>Дата заказа</th>
+                    <th>Осталось</th>
+                    <th>Сумма заказа</th>
+                    <th>Адрес</th>
+                </tr>
+                <tr>
+                    <td class="num"><a href="order_print.html" title="Подробнее о заказе">333444</a></td>
+                    <td>печать</td>
+                    <td>13.12.2023</td>
+                    <td>3 дня</td>
+                    <td>28.00 руб.</td>
+                    <td class="address">Невский пр-кт, д. 24</td>
+                </tr>
+                <tr>
+                    <td class="num"><a href="order_scan.html" title="Подробнее о заказе">111321</a></td>
+                    <td>сканирование</td>
+                    <td>14.12.2023</td>
+                    <td>4 дня</td>
+                    <td>5.00 руб.</td>
+                    <td class="address">Невский пр-кт, д. 24</td>
+                </tr>
                 </tbody>
             </table>
         </div>

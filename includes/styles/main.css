@@ -352,9 +352,9 @@ form .menu li {
 }
 #content {
     width: 900px;
+    min-height: 420px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-content: center;
     margin-bottom: 30px;
 }
@@ -399,4 +399,24 @@ form .menu li {
 }
 .new-order img {
     width: 84px;
+}
+
+#files .file {
+    height: 160px;
+    padding: 15px;
+    background-color: #F5F5F5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#files .file:hover {
+    background-color: #EEEEEE;
+}
+#files .file img {
+    width: 64px;
+}
+#files .file p {
+    margin: 2px;
+    text-align: center;
 }
