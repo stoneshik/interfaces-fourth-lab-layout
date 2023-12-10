@@ -454,3 +454,7 @@ form .menu li {
     display: flex;
     justify-content: center;
 }
+#map {
+    display: flex;
+    justify-content: center;
+}
