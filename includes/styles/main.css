@@ -131,11 +131,8 @@ label {
     border-color: #F77A52;
 }
 .form-row input[type="text"]:focus+label,
-.form-row input[type="text"]:valid+label,
 .form-row input[type="email"]:focus+label,
-.form-row input[type="email"]:valid+label,
-.form-row input[type="password"]:focus+label,
-.form-row input[type="password"]:valid+label {
+.form-row input[type="password"]:focus+label {
     margin-left: -15px;
     margin-top: -12px;
     font-size: 14px;
@@ -487,4 +484,44 @@ form .menu li {
 }
 #pay_button_second {
     width: 100px;
+}
+.page-selection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.page-selection input[type="text"] {
+    min-width: 0;
+    width: 250px;
+}
+.page-selection label.text-input-label {
+    font-size: 16px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+.tooltiptext {
+    visibility: hidden;
+    width: 550px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+
+    position: absolute;
+    z-index: 1;
+    bottom: 110%; /* Расположение подсказки относительно основного текста */
+    left: 50%;
+    margin-left: -60px; /* Центрирование подсказки */
+
+    opacity: 0; /* Начальная прозрачность */
+    transition: opacity 0.3s; /* Плавное появление */
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
