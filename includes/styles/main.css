@@ -465,3 +465,6 @@ form .menu li {
     display: flex;
     justify-content: center;
 }
+#new_order_form {
+    margin: 0;
+}

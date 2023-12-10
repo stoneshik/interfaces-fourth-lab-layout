@@ -32,10 +32,23 @@
 </div>
 <div id="wrapper" class="container">
     <div id="new_order_wrapper" class="container">
-            <div class="new-order">
-                <img src="includes/img/printer.png" alt="printer">
-                <h3>Заказ на печать</h3>
+        <form action="main.html" class="ui-form main-form" id="new_order_form">
+            <div class="form-row">
+                <input type="email" id="email-field" required autocomplete="off">
+                <label for="email-field" class="text-input-label">Почта:</label>
             </div>
+            <div class="form-row">
+                <input type="password" id="password-field" required autocomplete="off">
+                <label for="password-field" class="text-input-label">Пароль:</label>
+            </div>
+            <input type="submit" value="Войти">
+            <a href="forgot_password_email.html" id="forgot-password">Забыли пароль?</a>
+            <ul class="menu">
+                <li><a><img src="includes/img/VK_Compact_Logo_(2021-present).svg.webp" alt="vk"></a></li>
+                <li><a><img src="includes/img/32_@mail_sign_only_square_b.svg" alt="email"></a></li>
+                <li><a><img src="includes/img/Yandex_icon.svg.png" alt="yandex"></a></li>
+            </ul>
+        </form>
         <div style="position:relative;overflow:hidden;" id="map">
             <a href="https://yandex.ru/maps/2/saint-petersburg/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Санкт‑Петербург</a><a href="https://yandex.ru/maps/2/saint-petersburg/?ll=30.315635%2C59.938951&utm_medium=mapframe&utm_source=maps&z=11" style="color:#eee;font-size:12px;position:absolute;top:14px;">Карта Санкт-Петербурга с улицами и номерами домов — Яндекс Карты</a><iframe src="https://yandex.ru/map-widget/v1/?ll=30.315635%2C59.938951&z=11" width="800" height="500" frameborder="0" allowfullscreen="true" style="position:relative;"></iframe>
         </div>
