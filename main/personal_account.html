@@ -32,55 +32,21 @@
 </div>
 <div id="wrapper" class="container">
     <div id="content">
-        <div id="orders">
-            <h3>Оплаченные заказы</h3>
-            <table>
-                <tbody>
-                <tr>
-                    <th>Номер заказа</th>
-                    <th>Тип заказа</th>
-                    <th>Дата заказа</th>
-                    <th>Осталось</th>
-                    <th>Сумма заказа</th>
-                    <th>Адрес</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td class="num"><a href="order_print.html" title="Подробнее о заказе">333444</a></td>
-                    <td>печать</td>
-                    <td>13.12.2023</td>
-                    <td>3 дня</td>
-                    <td>28.00 руб.</td>
-                    <td class="address">Невский пр-кт, д. 24</td>
-                    <td><img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);"></td>
-                </tr>
-                <tr>
-                    <td class="num"><a href="order_scan.html" title="Подробнее о заказе">111321</a></td>
-                    <td>сканирование</td>
-                    <td>14.12.2023</td>
-                    <td>4 дня</td>
-                    <td>5.00 руб.</td>
-                    <td class="address">Невский пр-кт, д. 24</td>
-                    <td><img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);"></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div>
-            <h2>Новый заказ</h2>
-            <div class="container double-column">
-                <a class="new-order-wrapper" href="new-order-print.html">
-                    <div class="new-order">
-                        <img src="includes/img/printer.png" alt="printer">
-                        <h3>Заказ на печать</h3>
-                    </div>
-                </a>
-                <a class="new-order-wrapper" href="new-order-scan.html">
-                    <div class="new-order">
-                        <img src="includes/img/scanner.png" alt="scanner">
-                        <h3>Заказ на сканирование</h3>
-                    </div>
-                </a>
+        <div class="container column">
+            <h2>Личный кабинет</h2>
+            <div id="personal_account_content" class="container">
+                <div class="container column">
+                    <h3>Логин пользователя: sus</h3>
+                    <h3>Почта пользователя: sus@mail.ru</h3>
+                </div>
+                <div>
+                    <ul id="personal_account_menu">
+                        <li><a>Пополнения счета</a></li>
+                        <li><a>Архив заказов</a></li>
+                        <li><a>Выйти из аккаунта</a></li>
+                        <li><a style="color:red">Удалить аккаунт</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

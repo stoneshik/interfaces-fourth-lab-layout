@@ -591,3 +591,23 @@ form .menu li {
 .advantage img {
     width: 64px;
 }
+
+#personal_account_content {
+    width: 100%;
+}
+#personal_account_menu {
+    margin: 0;
+    padding: 0;
+}
+#personal_account_menu li {
+    width: 180px;
+    list-style: none;
+    padding: 20px;
+    background-color: #F5F5F5;
+}
+#personal_account_menu li:hover {
+    background-color: #EEEEEE;
+}
+#personal_account_content h3 {
+    text-align: left;
+}
