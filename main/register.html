@@ -30,22 +30,22 @@
                 </ul>
             </div>
             <div class="form-row">
-                <input type="email" id="email-field" required autocomplete="off">
+                <input type="email" id="email-field" required autocomplete="off" oninput="input_field(this);">
                 <label for="email-field" class="text-input-label">Почта:</label>
             </div>
             <div class="form-row">
-                <input type="text" id="name-field" required autocomplete="off">
+                <input type="text" id="name-field" required autocomplete="off" oninput="input_field(this);">
                 <label for="name-field" class="text-input-label">Логин:</label>
             </div>
             <div class="form-row">
-                <input type="password" id="password-field" required autocomplete="off">
+                <input type="password" id="password-field" required autocomplete="off" oninput="input_field(this);">
                 <label for="password-field" class="text-input-label">Пароль:</label>
             </div>
             <div class="form-row">
                 <input type="submit" value="Зарегистрироваться">
             </div>
             <div class="form-row">
-                <input type="checkbox" id="agreement" autocomplete="off">
+                <input type="checkbox" id="agreement" required autocomplete="off">
                 <span>Я согласен(на) с <br><a>условиями пользования</a></span>
             </div>
         </form>
@@ -82,5 +82,14 @@
         <h4>Email: info@typofast.ru</h4>
     </div>
 </div>
+<script>
+    function input_field(e) {
+        if (e.value) {
+            e.classList.add('inputting_field');
+        } else {
+            e.classList.remove('inputting_field');
+        }
+    }
+</script>
 </body>
 </html>

@@ -133,9 +133,7 @@ label {
 .form-row input[type="text"]:focus+label,
 .form-row input[type="email"]:focus+label,
 .form-row input[type="password"]:focus+label,
-.form-row input[type="text"]:valid+label,
-.form-row input[type="email"]:valid+label,
-.form-row input[type="password"]:valid+label{
+form .form-row .inputting_field+label {
     margin-left: -15px;
     margin-top: -12px;
     font-size: 14px;
