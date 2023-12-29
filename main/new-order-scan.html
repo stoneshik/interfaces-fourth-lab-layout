@@ -46,7 +46,7 @@
                 </select>
             </div>
             <div class="form-row">
-                <input type="text" id="num_field" required autocomplete="off">
+                <input type="text" id="num_field" required autocomplete="off" oninput="input_field(this);">
                 <label for="num_field" class="text-input-label">Число страниц:</label>
             </div>
             <div class="form-row" id="pay_button">
@@ -88,5 +88,14 @@
         <h4>Email: info@typofast.ru</h4>
     </div>
 </div>
+<script>
+    function input_field(e) {
+        if (e.value) {
+            e.classList.add('inputting_field');
+        } else {
+            e.classList.remove('inputting_field');
+        }
+    }
+</script>
 </body>
 </html>

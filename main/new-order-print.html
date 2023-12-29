@@ -56,7 +56,7 @@
             <div class="form-row page-selection">
                 <a>file1.pdf</a>
                 <p class="container tooltip">
-                    <input type="text" id="first-field" required autocomplete="off">
+                    <input type="text" id="first-field" autocomplete="off" oninput="input_field(this);">
                     <label for="first-field" class="text-input-label">Выбор страниц:</label>
                     <span class="tooltiptext">Оставьте поле пустым если хотите распечатать файл полностью. Введите нужные номера страниц, разделяя их пробелами. Интервалы страниц укажите через дефис без пробелов. Пример: 1 4 7-8 11-15</span>
                 </p>
@@ -65,14 +65,14 @@
             <div class="form-row page-selection">
                 <a>file2.pdf</a>
                 <p class="container tooltip">
-                    <input type="text" id="second-field" required autocomplete="off">
+                    <input type="text" id="second-field" autocomplete="off" oninput="input_field(this);">
                     <label for="second-field" class="text-input-label">Выбор страниц:</label>
                     <span class="tooltiptext">Оставьте поле пустым если хотите распечатать файл полностью. Введите нужные номера страниц, разделяя их пробелами. Интервалы страниц укажите через дефис без пробелов. Пример: 1 4 7-8 11-15</span>
                 </p>
                 <img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);">
             </div>
             <div class="form-row">
-                <input type="text" id="num-field" required autocomplete="off">
+                <input type="text" id="num-field" required autocomplete="off" oninput="input_field(this);">
                 <label for="num-field" class="text-input-label">Количество копий печати:</label>
             </div>
             <div class="form-row" id="pay_button">
@@ -117,6 +117,13 @@
 <script>
     function remove(e) {
         e.parentElement.remove();
+    }
+    function input_field(e) {
+        if (e.value) {
+            e.classList.add('inputting_field');
+        } else {
+            e.classList.remove('inputting_field');
+        }
     }
 </script>
 </body>
