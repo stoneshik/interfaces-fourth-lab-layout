@@ -45,31 +45,15 @@
                     <option>ул. Шаврова, д. 6</option>
                 </select>
             </div>
-            <fieldset id="x">
+            <div class="form-row">
+                <input type="file" multiple="multiple" onchange="fileUpload(this);" required>
+            </div>
+            <fieldset>
                 <label>Тип печати:</label>
                 <input type="radio" value="0" name="x" checked>Черно-белая
                 <input type="radio" value="1" name="x">Цветная
             </fieldset>
-            <div class="form-row">
-                <input type="file" multiple>
-            </div>
-            <div class="form-row page-selection">
-                <a>file1.pdf</a>
-                <p class="container tooltip">
-                    <input type="text" id="first-field" autocomplete="off" oninput="input_field(this);">
-                    <label for="first-field" class="text-input-label">Выбор страниц:</label>
-                    <span class="tooltiptext">Оставьте поле пустым если хотите распечатать файл полностью. Введите нужные номера страниц, разделяя их пробелами. Интервалы страниц укажите через дефис без пробелов. Пример: 1 4 7-8 11-15</span>
-                </p>
-                <img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);">
-            </div>
-            <div class="form-row page-selection">
-                <a>file2.pdf</a>
-                <p class="container tooltip">
-                    <input type="text" id="second-field" autocomplete="off" oninput="input_field(this);">
-                    <label for="second-field" class="text-input-label">Выбор страниц:</label>
-                    <span class="tooltiptext">Оставьте поле пустым если хотите распечатать файл полностью. Введите нужные номера страниц, разделяя их пробелами. Интервалы страниц укажите через дефис без пробелов. Пример: 1 4 7-8 11-15</span>
-                </p>
-                <img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);">
+            <div id="files_list">
             </div>
             <div class="form-row">
                 <input type="text" id="num-field" required autocomplete="off" oninput="input_field(this);">
@@ -115,6 +99,11 @@
     </div>
 </div>
 <script>
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min);
+    }
     function remove(e) {
         e.parentElement.remove();
     }
@@ -124,6 +113,23 @@
         } else {
             e.classList.remove('inputting_field');
         }
+    }
+    function fileUpload(e) {
+        const fileListHtmlElement = document.getElementById('files_list');
+        let elementString = '';
+        for (let i = 0, file = e.files[i]; i < e.files.length; i++) {
+            const fileNum = getRandomInt(0, 9999999999);
+            elementString += '<div class="form-row page-selection">\n' +
+                '                    <a>' + file.name + '</a>\n' +
+                '                    <div class="container tooltip">\n' +
+                '                        <input type="text" id="file-' + fileNum + '" autocomplete="off" oninput="input_field(this);">\n' +
+                '                        <label for="file-' + fileNum + '" class="text-input-label">Выбор страниц:</label>\n' +
+                '                        <span class="tooltiptext">Оставьте поле пустым если хотите распечатать файл полностью. Введите нужные номера страниц, разделяя их пробелами. Интервалы страниц укажите через дефис без пробелов. Пример: 1 4 7-8 11-15</span>\n' +
+                '                    </div>\n' +
+                '                    <img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);">\n' +
+                '                </div>';
+        }
+        fileListHtmlElement.innerHTML += elementString;
     }
 </script>
 </body>
