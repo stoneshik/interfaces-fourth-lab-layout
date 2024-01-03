@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title>Типофаст</title>
     <link rel="stylesheet" href="includes/styles/main.css">
+    <script src="includes/js/js_cookie.min.js"></script>
 </head>
 <body>
 <div id="header" class="container">
@@ -61,9 +62,9 @@
                 <label for="num-field" class="text-input-label">Количество копий печати:</label>
             </div>
             <div class="form-row" id="pay_button">
-                <p>Оплатить</p>
-                <input type="submit" value="Сейчас" id="pay_button_first">
-                <input type="submit" value="Позже" id="pay_button_second">
+                <p>Оплатить <strong id="amount">0 руб.</strong></p>
+                <input type="submit" value="Сейчас" id="pay_button_first" onclick="now_submit();">
+                <input type="submit" value="Позже" id="pay_button_second" onclick="later_submit();">
             </div>
         </form>
         <div style="position:relative;overflow:hidden;" id="map">
@@ -105,8 +106,15 @@
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min) + min);
     }
+    function updateAmount() {
+        const amountHtml = document.getElementById('amount');
+        const fileListHtmlElement = document.getElementById('files_list');
+        const files = fileListHtmlElement.querySelectorAll('div.page-selection');
+        amountHtml.innerHTML = String(files.length * 7) + ' руб.';
+    }
     function remove(e) {
         e.parentElement.remove();
+        updateAmount();
     }
     function input_field(e) {
         if (e.value) {
@@ -120,7 +128,7 @@
         let elementString = '';
         for (let i = 0; i < e.files.length; i++) {
             const file = e.files[i];
-            const fileNum = getRandomInt(0, 9999999999);
+            const fileNum = getRandomInt(0, 999999);
             elementString += '<div class="form-row page-selection">\n' +
                 '                    <a>' + file.name + '</a>\n' +
                 '                    <fieldset class="custom-fieldset" onchange="changeTypeInMainFieldset();">\n' +
@@ -136,6 +144,7 @@
                 '                </div>';
         }
         fileListHtmlElement.innerHTML += elementString;
+        updateAmount();
     }
     function findCheckedRadioButton(fieldSet) {
         const inputRadioButtons = fieldSet.querySelectorAll('input[type="radio"]');
@@ -194,6 +203,12 @@
                 inputRadioButton.checked = false;
             }
         }
+    }
+    function now_submit() {
+        console.log('eee');
+    }
+    function later_submit() {
+        console.log('qqqq');
     }
 </script>
 </body>
