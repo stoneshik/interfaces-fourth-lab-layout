@@ -99,10 +99,29 @@
     </div>
 </div>
 <script>
+    function removeValueFromCookies(nameKeyInCookie, num) {
+        const orders = JSON.parse(Cookies.get(nameKeyInCookie));
+        let newOrders = [];
+        for (let i = 0; i < orders.length; i++) {
+            const orderPrint = orders[i];
+            if (String(orderPrint['num']) === String(num)) {
+                continue;
+            }
+            newOrders.push(orderPrint);
+        }
+        Cookies.set(nameKeyInCookie, JSON.stringify(newOrders));
+    }
     function remove(e) {
         const result = confirm("Вы уверены что хотите удалить заказ?");
         if (!result) {
-            return;
+            return false;
+        }
+        const elements = e.parentElement.parentElement.getElementsByTagName('td');
+        const num = elements[0].innerText;
+        if (elements[1].innerText === 'печать') {
+            removeValueFromCookies('order_print', num);
+        } else {
+            removeValueFromCookies('order_scan', num);
         }
         e.parentElement.parentElement.remove();
     }
