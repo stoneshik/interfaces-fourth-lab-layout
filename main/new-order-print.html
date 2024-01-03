@@ -235,6 +235,8 @@
         let orderPrint = Cookies.get(nameKeyInCookie);
         if (orderPrint === undefined) {
             orderPrint = [];
+        } else {
+            orderPrint = JSON.parse(orderPrint);
         }
         const date = new Date();
         orderPrint.push(
@@ -248,7 +250,6 @@
             }
         );
         Cookies.set(nameKeyInCookie, JSON.stringify(orderPrint));
-        console.log(Cookies.get(nameKeyInCookie));
     }
     function now_submit() {
         updateCookieValue('order_print');

@@ -48,24 +48,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td class="num"><a href="order_print.html" title="Подробнее о заказе">333444</a></td>
-                    <td>печать</td>
-                    <td>13.12.2023</td>
-                    <td>3 дня</td>
-                    <td>28.00 руб.</td>
-                    <td class="address">Невский пр-кт, д. 24</td>
-                    <td><img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);"></td>
-                </tr>
-                <tr>
-                    <td class="num"><a href="order_scan.html" title="Подробнее о заказе">111321</a></td>
-                    <td>сканирование</td>
-                    <td>14.12.2023</td>
-                    <td>4 дня</td>
-                    <td>5.00 руб.</td>
-                    <td class="address">Невский пр-кт, д. 24</td>
-                    <td><img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);"></td>
-                </tr>
                 </tbody>
             </table>
         </div>
@@ -145,12 +127,38 @@
         }
         tbodyHtml.innerHTML += elementString;
     }
+    function startCookies() {
+        let isFirstLoad = Cookies.get('is_first_load');
+        if (isFirstLoad !== undefined) {
+            return false;
+        }
+        Cookies.set('is_first_load', true);
+        const orderPrints = [{
+            'num': 333444,
+            'type': 'печать',
+            'date': '13.12.2023',
+            'days': '3 дня',
+            'amount': '28.00 руб.',
+            'address': 'Невский пр-кт, д. 24'
+        }];
+        const scanPrints = [{
+            'num': 111321,
+            'type': 'сканирование',
+            'date': '14.12.2023',
+            'days': '4 дня',
+            'amount': '5.00 руб.',
+            'address': 'Невский пр-кт, д. 24'
+        }]
+        Cookies.set('order_print', JSON.stringify(orderPrints));
+        Cookies.set('order_scan', JSON.stringify(scanPrints));
+    }
     window.onload = () => {
         const tableHtml = document.getElementById('orders').getElementsByTagName('tbody');
         if (tableHtml.length <= 0) {
             return false;
         }
         const tbodyHtml = tableHtml[0];
+        startCookies();
         addRows(tbodyHtml, 'order_print');
         addRows(tbodyHtml, 'order_scan');
     }
