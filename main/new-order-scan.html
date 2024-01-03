@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title>Типофаст</title>
     <link rel="stylesheet" href="includes/styles/main.css">
+    <script src="includes/js/js_cookie.min.js"></script>
 </head>
 <body>
 <div id="header" class="container">
@@ -46,13 +47,13 @@
                 </select>
             </div>
             <div class="form-row">
-                <input type="text" id="num_field" required autocomplete="off" oninput="input_field(this);">
+                <input type="text" id="num_field" required autocomplete="off" oninput="inputField(this);">
                 <label for="num_field" class="text-input-label">Число страниц:</label>
             </div>
             <div class="form-row" id="pay_button">
-                <p>Оплатить</p>
-                <input type="submit" value="Сейчас" id="pay_button_first">
-                <input type="submit" value="Позже" id="pay_button_second">
+                <p>Оплатить <strong id="amount">0 руб.</strong></p>
+                <input type="submit" value="Сейчас" id="pay_button_first" onclick="nowSubmit();">
+                <input type="submit" value="Позже" id="pay_button_second" onclick="laterSubmit();">
             </div>
         </form>
         <div style="position:relative;overflow:hidden;" id="map">
@@ -89,12 +90,71 @@
     </div>
 </div>
 <script>
-    function input_field(e) {
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min);
+    }
+    function formatDate(date) {
+        let day = String(date.getDate());
+        let month = String(date.getMonth() + 1);
+        let year = String(date.getFullYear());
+        if (day.length < 2) {
+            day = '0' + day;
+        }
+        if (month.length < 2) {
+            month = '0' + month;
+        }
+        return day + '.' + month + '.' + year;
+    }
+    function updateNum(e) {
+        const value = e.value;
+        const amountHtml = document.getElementById('amount');
+        amountHtml.innerHTML = String(value * 0.5) + ' руб.';
+    }
+    function updateCookie(nameKeyInCookie) {
+        const amountHtml = document.getElementById('amount');
+        const amount = amountHtml.innerText;
+        if (amount === '0 руб.') {
+            return false;
+        }
+        const addressHtml = document.getElementById('address');
+        const address = addressHtml.value;
+        if (address === '') {
+            return false;
+        }
+        let orderScan = Cookies.get(nameKeyInCookie);
+        if (orderScan === undefined) {
+            orderScan = [];
+        } else {
+            orderScan = JSON.parse(orderScan);
+        }
+        const date = new Date();
+        orderScan.push(
+            {
+                'num': getRandomInt(100000, 999999),
+                'type': 'сканирование',
+                'date': formatDate(date),
+                'days': '7 дней',
+                'amount': amount,
+                'address': address
+            }
+        );
+        Cookies.set(nameKeyInCookie, JSON.stringify(orderScan));
+    }
+    function inputField(e) {
         if (e.value) {
             e.classList.add('inputting_field');
         } else {
             e.classList.remove('inputting_field');
         }
+        updateNum(e);
+    }
+    function nowSubmit() {
+        updateCookie('order_scan');
+    }
+    function laterSubmit() {
+        updateCookie('order_scan_cart');
     }
 </script>
 </body>

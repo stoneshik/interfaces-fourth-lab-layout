@@ -58,13 +58,13 @@
             <div id="files_list">
             </div>
             <div class="form-row">
-                <input type="text" id="num-field" required autocomplete="off" oninput="input_field(this);">
+                <input type="text" id="num-field" required autocomplete="off" oninput="inputField(this);">
                 <label for="num-field" class="text-input-label">Количество копий печати:</label>
             </div>
             <div class="form-row" id="pay_button">
                 <p>Оплатить <strong id="amount">0 руб.</strong></p>
-                <input type="submit" value="Сейчас" id="pay_button_first" onclick="now_submit();">
-                <input type="submit" value="Позже" id="pay_button_second" onclick="later_submit();">
+                <input type="submit" value="Сейчас" id="pay_button_first" onclick="nowSubmit();">
+                <input type="submit" value="Позже" id="pay_button_second" onclick="laterSubmit();">
             </div>
         </form>
         <div style="position:relative;overflow:hidden;" id="map">
@@ -128,7 +128,7 @@
         e.parentElement.remove();
         updateAmount();
     }
-    function input_field(e) {
+    function inputField(e) {
         if (e.value) {
             e.classList.add('inputting_field');
         } else {
@@ -251,10 +251,10 @@
         );
         Cookies.set(nameKeyInCookie, JSON.stringify(orderPrint));
     }
-    function now_submit() {
+    function nowSubmit() {
         updateCookieValue('order_print');
     }
-    function later_submit() {
+    function laterSubmit() {
         updateCookieValue('order_print_cart');
     }
 </script>
