@@ -49,25 +49,12 @@
                 <input type="file" multiple="multiple" onchange="fileUpload(this);" required>
             </div>
             <fieldset id="type_all_files" class="custom-fieldset" onchange="typeAllFiles(this);">
-                <label>Тип печати для загруженных файлов:</label>
+                <label>Тип печати для всех файлов:</label>
                 <input type="radio" value="black_white" name="type" checked>Черно-белая
                 <input type="radio" value="color" name="type">Цветная
-                <input type="radio" value="custom" name="type">Своя настройка
+                <input type="radio" value="custom" name="type">Разное
             </fieldset>
             <div id="files_list">
-                <div class="form-row page-selection">
-                    <a>file1.pdf</a>
-                    <fieldset class="custom-fieldset">
-                        <input type="radio" value="black_white" name="y" checked>Ч\б
-                        <input type="radio" value="color" name="y">Цветная
-                    </fieldset>
-                    <p class="container tooltip">
-                        <input type="text" id="first-field" autocomplete="off" oninput="input_field(this);">
-                        <label for="first-field" class="text-input-label">Выбор страниц:</label>
-                        <span class="tooltiptext">Оставьте поле пустым если хотите распечатать файл полностью. Введите нужные номера страниц, разделяя их пробелами. Интервалы страниц укажите через дефис без пробелов. Пример: 1 4 7-8 11-15</span>
-                    </p>
-                    <img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);">
-                </div>
             </div>
             <div class="form-row">
                 <input type="text" id="num-field" required autocomplete="off" oninput="input_field(this);">
@@ -136,7 +123,7 @@
             const fileNum = getRandomInt(0, 9999999999);
             elementString += '<div class="form-row page-selection">\n' +
                 '                    <a>' + file.name + '</a>\n' +
-                '                    <fieldset class="custom-fieldset">\n' +
+                '                    <fieldset class="custom-fieldset" onchange="changeTypeInMainFieldset();">\n' +
                 '                        <input type="radio" value="black_white" name="type-' + fileNum + '" checked>Ч\\б\n' +
                 '                        <input type="radio" value="color" name="type-' + fileNum + '">Цветная\n' +
                 '                    </fieldset>\n' +
@@ -193,6 +180,19 @@
                 break;
             default:
                 break;
+        }
+    }
+    function changeTypeInMainFieldset() {
+        const typeAllFilesHtml = document.getElementById('type_all_files');
+        const inputRadioButtons = typeAllFilesHtml.querySelectorAll('input[type="radio"]');
+        const valueStringForCustomRadioButton = 'custom'
+        for (let i = 0; i < inputRadioButtons.length; i++) {
+            const inputRadioButton = inputRadioButtons[i];
+            if (inputRadioButton.value === valueStringForCustomRadioButton) {
+                inputRadioButton.checked = true;
+            } else {
+                inputRadioButton.checked = false;
+            }
         }
     }
 </script>
