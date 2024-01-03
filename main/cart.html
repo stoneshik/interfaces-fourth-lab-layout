@@ -54,7 +54,7 @@
         </div>
         <div id="total" class="container">
             <h3>Итого: <span id="amount">0</span> руб.</h3>
-            <div class="button">Оплатить</div>
+            <div class="button" onclick="handlingPay();">Оплатить</div>
         </div>
     </div>
 </div>
@@ -100,6 +100,58 @@ function updateAmount(e) {
         amountHtml.innerText = String(amount + parseFloat(elements[5].innerText.split(" ")[0]));
     } else {
         amountHtml.innerText = String(amount - parseFloat(elements[5].innerText.split(" ")[0]));
+    }
+}
+function updateValueFromCookies(nameKeyInCookieCart, nameKeyInCookie, num) {
+    const ordersCart = JSON.parse(Cookies.get(nameKeyInCookieCart));
+    let newOrders = [];
+    let findValue = false;
+    for (let i = 0; i < ordersCart.length; i++) {
+        const order = ordersCart[i];
+        if (String(order['num']) === String(num)) {
+            findValue = order;
+            continue;
+        }
+        newOrders.push(order);
+    }
+    if (!findValue) {
+        return false;
+    }
+    let orders = Cookies.get(nameKeyInCookie);
+    if (orders === undefined) {
+        return false;
+    }
+    orders = JSON.parse(orders);
+    orders.push(findValue);
+    Cookies.set(nameKeyInCookieCart, JSON.stringify(newOrders));
+    Cookies.set(nameKeyInCookie, JSON.stringify(orders));
+}
+function handlingPay() {
+    const amountHtml = document.getElementById('amount');
+    const amount = parseFloat(amountHtml.innerText);
+    if (amount === 0) {
+        return false;
+    }
+    const ordersHtml = document.getElementById('orders');
+    const rowsHtml = ordersHtml.querySelectorAll('tbody tr');
+    for (let i = 0; i < rowsHtml.length; i++) {
+        const row = rowsHtml[i];
+        const elements = row.getElementsByTagName('td');
+        let checkboxHtml = elements[0].querySelectorAll('input[type="checkbox"]');
+        if (checkboxHtml.length < 1) {
+            continue;
+        }
+        checkboxHtml = checkboxHtml[0];
+        if (!checkboxHtml.checked) {
+            continue;
+        }
+        const num = elements[1].innerText;
+        if (elements[2].innerText === 'печать') {
+            updateValueFromCookies('order_print_cart', 'order_print', num);
+        } else {
+            updateValueFromCookies('order_scan_cart', 'order_scan', num);
+        }
+        row.remove();
     }
 }
 function removeValueFromCookies(nameKeyInCookie, num) {
