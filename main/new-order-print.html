@@ -48,19 +48,18 @@
             <div class="form-row">
                 <input type="file" multiple="multiple" onchange="fileUpload(this);" required>
             </div>
-            <fieldset class="custom-fieldset">
+            <fieldset id="type_all_files" class="custom-fieldset" onchange="typeAllFiles(this);">
                 <label>Тип печати для загруженных файлов:</label>
-                <input type="radio" value="0" name="type" checked>Черно-белая
-                <input type="radio" value="1" name="type">Цветная
-                <input type="radio" value="2" name="type">Своя настройка
+                <input type="radio" value="black_white" name="type" checked>Черно-белая
+                <input type="radio" value="color" name="type">Цветная
+                <input type="radio" value="custom" name="type">Своя настройка
             </fieldset>
-
             <div id="files_list">
                 <div class="form-row page-selection">
                     <a>file1.pdf</a>
                     <fieldset class="custom-fieldset">
-                        <input type="radio" value="0" name="y" checked>Ч\б
-                        <input type="radio" value="1" name="y">Цветная
+                        <input type="radio" value="black_white" name="y" checked>Ч\б
+                        <input type="radio" value="color" name="y">Цветная
                     </fieldset>
                     <p class="container tooltip">
                         <input type="text" id="first-field" autocomplete="off" oninput="input_field(this);">
@@ -132,13 +131,14 @@
     function fileUpload(e) {
         const fileListHtmlElement = document.getElementById('files_list');
         let elementString = '';
-        for (let i = 0, file = e.files[i]; i < e.files.length; i++) {
+        for (let i = 0; i < e.files.length; i++) {
+            const file = e.files[i];
             const fileNum = getRandomInt(0, 9999999999);
             elementString += '<div class="form-row page-selection">\n' +
                 '                    <a>' + file.name + '</a>\n' +
                 '                    <fieldset class="custom-fieldset">\n' +
-                '                        <input type="radio" value="0" name="type-' + fileNum + '" checked>Ч\\б\n' +
-                '                        <input type="radio" value="1" name="type-' + fileNum + '">Цветная\n' +
+                '                        <input type="radio" value="black_white" name="type-' + fileNum + '" checked>Ч\\б\n' +
+                '                        <input type="radio" value="color" name="type-' + fileNum + '">Цветная\n' +
                 '                    </fieldset>\n' +
                 '                    <p class="container tooltip">\n' +
                 '                        <input type="text" id="file-' + fileNum + '" autocomplete="off" oninput="input_field(this);">\n' +
@@ -149,6 +149,51 @@
                 '                </div>';
         }
         fileListHtmlElement.innerHTML += elementString;
+    }
+    function findCheckedRadioButton(fieldSet) {
+        const inputRadioButtons = fieldSet.querySelectorAll('input[type="radio"]');
+        for (let i = 0; i < inputRadioButtons.length; i++) {
+            const inputRadioButton = inputRadioButtons[i];
+            if (inputRadioButton.checked) {
+                return inputRadioButton;
+            }
+        }
+        return false;
+    }
+    function switchRadioButton(fileFieldsetList, typeFileRadioButton) {
+        for (let i = 0; i < fileFieldsetList.length; i++) {
+            const fileFieldset = fileFieldsetList[i];
+            const inputRadioButtons = fileFieldset.querySelectorAll('input[type="radio"]');
+            for (let j = 0; j < inputRadioButtons.length; j++) {
+                const inputRadioButton = inputRadioButtons[j];
+                if (inputRadioButton.value === typeFileRadioButton) {
+                    inputRadioButton.checked = true;
+                } else {
+                    inputRadioButton.checked = false;
+                }
+            }
+        }
+    }
+    function typeAllFiles(e) {
+        const checkedRadioButton = findCheckedRadioButton(e);
+        if (!checkedRadioButton) {
+            return false;
+        }
+        const valueCheckedRadioButton = checkedRadioButton.value;
+        const fileListHtml = document.getElementById('files_list');
+        const fileFieldsetList = fileListHtml.getElementsByTagName('fieldset');
+        switch (valueCheckedRadioButton) {
+            case 'black_white':
+                switchRadioButton(fileFieldsetList, 'black_white');
+                break;
+            case 'color':
+                switchRadioButton(fileFieldsetList, 'color');
+                break;
+            case 'custom':
+                break;
+            default:
+                break;
+        }
     }
 </script>
 </body>
