@@ -106,6 +106,18 @@
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min) + min);
     }
+    function formatDate(date) {
+        let day = String(date.getDate());
+        let month = String(date.getMonth() + 1);
+        let year = String(date.getFullYear());
+        if (day.length < 2) {
+            day = '0' + day;
+        }
+        if (month.length < 2) {
+            month = '0' + month;
+        }
+        return day + '.' + month + '.' + year;
+    }
     function updateAmount() {
         const amountHtml = document.getElementById('amount');
         const fileListHtmlElement = document.getElementById('files_list');
@@ -224,11 +236,12 @@
         if (orderPrint === undefined) {
             orderPrint = [];
         }
+        const date = new Date();
         orderPrint.push(
             {
                 'num': getRandomInt(100000, 999999),
                 'type': 'печать',
-                'date': new Date(),
+                'date': formatDate(date),
                 'days': '7 дней',
                 'amount': amount,
                 'address': address
