@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title>Типофаст</title>
     <link rel="stylesheet" href="includes/styles/main.css">
+    <script src="includes/js/js_cookie.min.js"></script>
 </head>
 <body>
 <div id="header" class="container">
@@ -35,7 +36,7 @@
         <div id="orders">
             <h3>Неоплаченные заказы</h3>
             <table>
-                <tbody>
+                <thead>
                 <tr>
                     <th></th>
                     <th>Номер заказа</th>
@@ -46,26 +47,8 @@
                     <th>Адрес</th>
                     <th></th>
                 </tr>
-                <tr>
-                    <td><input type="checkbox" autocomplete="off"></td>
-                    <td class="num"><a href="order_print.html" title="Подробнее о заказе">333444</a></td>
-                    <td>печать</td>
-                    <td>13.12.2023</td>
-                    <td>3 дня</td>
-                    <td>28.00 руб.</td>
-                    <td class="address">Невский пр-кт, д. 24</td>
-                    <td><img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);"></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" autocomplete="off"></td>
-                    <td class="num"><a href="order_scan.html" title="Подробнее о заказе">111321</a></td>
-                    <td>сканирование</td>
-                    <td>14.12.2023</td>
-                    <td>4 дня</td>
-                    <td>5.00 руб.</td>
-                    <td class="address">Невский пр-кт, д. 24</td>
-                    <td><img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);"></td>
-                </tr>
+                </thead>
+                <tbody>
                 </tbody>
             </table>
         </div>
@@ -104,12 +87,88 @@
     </div>
 </div>
 <script>
+    function removeValueFromCookies(nameKeyInCookie, num) {
+        const orders = JSON.parse(Cookies.get(nameKeyInCookie));
+        let newOrders = [];
+        for (let i = 0; i < orders.length; i++) {
+            const orderPrint = orders[i];
+            if (String(orderPrint['num']) === String(num)) {
+                continue;
+            }
+            newOrders.push(orderPrint);
+        }
+        Cookies.set(nameKeyInCookie, JSON.stringify(newOrders));
+    }
     function remove(e) {
         const result = confirm("Вы уверены что хотите удалить заказ?");
         if (!result) {
-            return;
+            return false;
+        }
+        const elements = e.parentElement.parentElement.getElementsByTagName('td');
+        const num = elements[1].innerText;
+        if (elements[2].innerText === 'печать') {
+            removeValueFromCookies('order_print_cart', num);
+        } else {
+            removeValueFromCookies('order_scan_cart', num);
         }
         e.parentElement.parentElement.remove();
+    }
+    function addRows(tbodyHtml, nameKeyInCookie) {
+        const ordersRaw = Cookies.get(nameKeyInCookie);
+        if (ordersRaw === undefined) {
+            return false;
+        }
+        const orders = JSON.parse(ordersRaw);
+        let elementString = '';
+        for (let i = 0; i < orders.length; i++) {
+            const order = orders[i];
+            elementString += '<tr>\n' +
+                '               <td><input type="checkbox" autocomplete="off"></td>\n' +
+                '               <td class="num"><a href="order_print.html" title="Подробнее о заказе">' + order['num'] + '</a></td>\n' +
+                '               <td>' + order['type'] + '</td>\n' +
+                '               <td>' + order['date'] + '</td>\n' +
+                '               <td>' + order['days'] + '</td>\n' +
+                '               <td>' + order['amount'] + '</td>\n' +
+                '               <td class="address">' + order['address'] + '</td>\n' +
+                '               <td><img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);"></td>\n' +
+                '             </tr>';
+        }
+        tbodyHtml.innerHTML += elementString;
+    }
+    function startCookies() {
+        let isFirstLoad = Cookies.get('is_first_load_cart');
+        if (isFirstLoad !== undefined) {
+            return false;
+        }
+        Cookies.set('is_first_load_cart', true);
+        const orderPrints = [{
+            'num': 333444,
+            'type': 'печать',
+            'date': '13.12.2023',
+            'days': '3 дня',
+            'amount': '28.00 руб.',
+            'address': 'Невский пр-кт, д. 24'
+        }];
+        const scanPrints = [{
+            'num': 111321,
+            'type': 'сканирование',
+            'date': '14.12.2023',
+            'days': '4 дня',
+            'amount': '5.00 руб.',
+            'address': 'Невский пр-кт, д. 24'
+        }]
+        Cookies.set('order_print_cart', JSON.stringify(orderPrints));
+        Cookies.set('order_scan_cart', JSON.stringify(scanPrints));
+    }
+    window.onload = () => {
+        const tableHtml = document.getElementById('orders').getElementsByTagName('tbody');
+        if (tableHtml.length <= 0) {
+            return false;
+        }
+        const tbodyHtml = tableHtml[0];
+        startCookies();
+        addRows(tbodyHtml, 'order_print_cart');
+        addRows(tbodyHtml, 'order_scan_cart');
     }
 </script>
 </body>
