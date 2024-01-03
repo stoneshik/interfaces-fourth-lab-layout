@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title>Типофаст</title>
     <link rel="stylesheet" href="includes/styles/main.css">
+    <script src="includes/js/js_cookie.min.js"></script>
 </head>
 <body>
 <div id="header" class="container">
@@ -35,7 +36,7 @@
         <div id="orders">
             <h3>Оплаченные заказы</h3>
             <table>
-                <tbody>
+                <thead>
                 <tr>
                     <th>Номер заказа</th>
                     <th>Тип заказа</th>
@@ -45,6 +46,8 @@
                     <th>Адрес</th>
                     <th></th>
                 </tr>
+                </thead>
+                <tbody>
                 <tr>
                     <td class="num"><a href="order_print.html" title="Подробнее о заказе">333444</a></td>
                     <td>печать</td>
@@ -120,6 +123,36 @@
             return;
         }
         e.parentElement.parentElement.remove();
+    }
+    function addRows(tbodyHtml, nameKeyInCookie) {
+        const ordersRaw = Cookies.get(nameKeyInCookie);
+        if (ordersRaw === undefined) {
+            return false;
+        }
+        const orders = JSON.parse(ordersRaw);
+        let elementString = '';
+        for (let i = 0; i < orders.length; i++) {
+            const order = orders[i];
+            elementString += '<tr>\n' +
+                '               <td class="num"><a href="order_print.html" title="Подробнее о заказе">' + order['num'] + '</a></td>\n' +
+                '               <td>' + order['type'] + '</td>\n' +
+                '               <td>' + order['date'] + '</td>\n' +
+                '               <td>' + order['days'] + '</td>\n' +
+                '               <td>' + order['amount'] + '</td>\n' +
+                '               <td class="address">' + order['address'] + '</td>\n' +
+                '               <td><img src="includes/img/cross.png" alt="cross" style="width: 24px;" onclick="remove(this);"></td>\n' +
+                '             </tr>';
+        }
+        tbodyHtml.innerHTML += elementString;
+    }
+    window.onload = () => {
+        const tableHtml = document.getElementById('orders').getElementsByTagName('tbody');
+        if (tableHtml.length <= 0) {
+            return false;
+        }
+        const tbodyHtml = tableHtml[0];
+        addRows(tbodyHtml, 'order_print');
+        addRows(tbodyHtml, 'order_scan');
     }
 </script>
 </body>

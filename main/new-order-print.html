@@ -110,7 +110,7 @@
         const amountHtml = document.getElementById('amount');
         const fileListHtmlElement = document.getElementById('files_list');
         const files = fileListHtmlElement.querySelectorAll('div.page-selection');
-        amountHtml.innerHTML = String(files.length * 7) + ' руб.';
+        amountHtml.innerHTML = String(files.length * 7) + '.00 руб.';
     }
     function remove(e) {
         e.parentElement.remove();
@@ -204,11 +204,44 @@
             }
         }
     }
+    function updateCookieValue(nameKeyInCookie) {
+        const amountHtml = document.getElementById('amount');
+        const amount = amountHtml.innerText;
+        if (amount === '0 руб.') {
+            return false;
+        }
+        const numFieldHtml = document.getElementById('num-field');
+        const numField = numFieldHtml.value;
+        if (numField === '') {
+            return false;
+        }
+        const addressHtml = document.getElementById('address');
+        const address = addressHtml.value;
+        if (address === '') {
+            return false;
+        }
+        let orderPrint = Cookies.get(nameKeyInCookie);
+        if (orderPrint === undefined) {
+            orderPrint = [];
+        }
+        orderPrint.push(
+            {
+                'num': getRandomInt(100000, 999999),
+                'type': 'печать',
+                'date': new Date(),
+                'days': '7 дней',
+                'amount': amount,
+                'address': address
+            }
+        );
+        Cookies.set(nameKeyInCookie, JSON.stringify(orderPrint));
+        console.log(Cookies.get(nameKeyInCookie));
+    }
     function now_submit() {
-        console.log('eee');
+        updateCookieValue('order_print');
     }
     function later_submit() {
-        console.log('qqqq');
+        updateCookieValue('order_print_cart');
     }
 </script>
 </body>
