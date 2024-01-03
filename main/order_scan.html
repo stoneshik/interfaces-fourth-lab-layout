@@ -23,7 +23,7 @@
                         <li><a>1337,00р</a></li>
                         <li><a>пополнить счет</a></li>
                         <li><a href="personal_account.html">личный кабинет</a></li>
-                        <li><a href="index.html">выйти</a></li>
+                        <li><a href="index.html" onclick="logout();">выйти</a></li>
                     </ul>
                 </div>
             </li>
@@ -90,5 +90,15 @@
         <h4>Email: info@typofast.ru</h4>
     </div>
 </div>
+<script>
+function logout() {
+    Cookies.remove('is_first_load_cart');
+    Cookies.remove('is_first_load');
+    Cookies.remove('order_print');
+    Cookies.remove('order_scan');
+    Cookies.remove('order_print_cart');
+    Cookies.remove('order_scan_cart');
+}
+</script>
 </body>
 </html>
