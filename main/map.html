@@ -20,7 +20,7 @@
                 <div class="description">аккаунт</div>
                 <div class="hamburger-wrapper">
                     <ul>
-                        <li><a>sus</a></li>
+                        <li><a id="login"></a></li>
                         <li><a>1337,00р</a></li>
                         <li><a>пополнить счет</a></li>
                         <li><a href="personal_account.html">личный кабинет</a></li>
@@ -72,6 +72,17 @@ function logout() {
     Cookies.remove('order_scan');
     Cookies.remove('order_print_cart');
     Cookies.remove('order_scan_cart');
+}
+function updateLogin() {
+    let loginValue = Cookies.get('login');
+    if (loginValue === undefined) {
+        loginValue = 'sus';
+    }
+    const loginHtml = document.getElementById('login');
+    loginHtml.innerText = loginValue;
+}
+window.onload = () => {
+    updateLogin();
 }
 </script>
 </body>

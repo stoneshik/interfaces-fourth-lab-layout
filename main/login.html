@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title>Типофаст</title>
     <link rel="stylesheet" href="includes/styles/main.css">
+    <script src="includes/js/js_cookie.min.js"></script>
 </head>
 <body>
 <div id="header" class="container">
@@ -20,13 +21,13 @@
 </div>
 <div id="wrapper" class="container">
     <div>
-        <form action="main.html" class="ui-form main-form" id="login_form">
+        <form action="main.html" class="ui-form main-form" id="login_form" onsubmit="handlingSubmit();">
             <div class="form-row">
-                <input type="email" id="email-field" required autocomplete="off" oninput="input_field(this);">
-                <label for="email-field" class="text-input-label">Почта:</label>
+                <input type="text" id="login-field" required autocomplete="off" oninput="inputField(this);">
+                <label for="login-field" class="text-input-label">Логин:</label>
             </div>
             <div class="form-row">
-                <input type="password" id="password-field" required autocomplete="off" oninput="input_field(this);">
+                <input type="password" id="password-field" required autocomplete="off" oninput="inputField(this);">
                 <label for="password-field" class="text-input-label">Пароль:</label>
             </div>
             <input type="submit" value="Войти">
@@ -71,13 +72,18 @@
     </div>
 </div>
 <script>
-    function input_field(e) {
-        if (e.value) {
-            e.classList.add('inputting_field');
-        } else {
-            e.classList.remove('inputting_field');
-        }
+function handlingSubmit() {
+    const loginField = document.getElementById('login-field');
+    const loginValue = loginField.value;
+    Cookies.set('login', loginValue);
+}
+function inputField(e) {
+    if (e.value) {
+        e.classList.add('inputting_field');
+    } else {
+        e.classList.remove('inputting_field');
     }
+}
 </script>
 </body>
 </html>
