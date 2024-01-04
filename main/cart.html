@@ -153,6 +153,8 @@ function handlingPay() {
         if (!checkboxHtml.checked) {
             continue;
         }
+        const newAmount = parseFloat(amountHtml.innerText);
+        amountHtml.innerText = String(newAmount - parseFloat(elements[5].innerText.split(" ")[0]));
         const num = elements[1].innerText;
         if (elements[2].innerText === 'печать') {
             updateValueFromCookies('order_print_cart', 'order_print', num);
