@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title>Типофаст</title>
     <link rel="stylesheet" href="includes/styles/main.css">
+    <script src="includes/js/js_cookie.min.js"></script>
 </head>
 <body>
 <div id="header" class="container">
@@ -20,7 +21,7 @@
 </div>
 <div id="wrapper" class="container">
     <div>
-        <form action="main.html" class="ui-form main-form" id="register_form">
+        <form action="main.html" class="ui-form main-form" id="register_form" onsubmit="handlingSubmit();">
             <div class="form-row">
                 <p>Регистрация через соцсети</p><br>
                 <ul class="menu">
@@ -34,8 +35,8 @@
                 <label for="email-field" class="text-input-label">Почта:</label>
             </div>
             <div class="form-row">
-                <input type="text" id="name-field" required autocomplete="off" oninput="input_field(this);">
-                <label for="name-field" class="text-input-label">Логин:</label>
+                <input type="text" id="login-field" required autocomplete="off" oninput="input_field(this);">
+                <label for="login-field" class="text-input-label">Логин:</label>
             </div>
             <div class="form-row">
                 <input type="password" id="password-field" required autocomplete="off" oninput="input_field(this);">
@@ -83,6 +84,11 @@
     </div>
 </div>
 <script>
+function handlingSubmit() {
+    const loginField = document.getElementById('login-field');
+    const loginValue = loginField.value;
+    Cookies.set('login', loginValue);
+}
 function input_field(e) {
     if (e.value) {
         e.classList.add('inputting_field');
